@@ -25,6 +25,7 @@ export function handleActorRegistered(event: ActorRegisteredEvent): void {
   actor.address = event.params.account
   actor.hash = event.params.hash
   actor.issuedAt = event.block.timestamp
+  actor.batches = []
 
   supplyChain.totalActors = supplyChain.totalActors.plus(BigInt.fromI32(1))
   const actors = supplyChain.actors

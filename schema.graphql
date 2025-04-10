@@ -4,6 +4,7 @@ type Actor @entity(immutable: false) {
   address: Bytes!
   hash: String!
   issuedAt: BigInt!
+  batches: [Batch!]!
 }
 
 type Batch @entity(immutable: false) {

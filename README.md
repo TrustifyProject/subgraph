@@ -7,8 +7,8 @@ The counterfeit "Made in Italy" market is a growing issue, causing significant e
 This subgraph indexes the Trustify Supply Chain contracts deployed on the Sepolia testnet. Subgraph is consumed by the Trustify DApp through the Apollo Supergraph.
 
 Subgraph URLs:
-- [Playground (v0.0.4-sepolia)](https://subgraph.satsuma-prod.com/captains-team--464728/Trustify/playground)
-- [GraphQL API Endpoint (v0.0.4-sepolia)](https://subgraph.satsuma-prod.com/aa1c9e02161b/captains-team--464728/Trustify/api)
+- [Playground (v0.0.5-sepolia)](https://subgraph.satsuma-prod.com/captains-team--464728/Trustify/playground)
+- [GraphQL API Endpoint (v0.0.5-sepolia)](https://subgraph.satsuma-prod.com/aa1c9e02161b/captains-team--464728/Trustify/api)
 
 ## Overview
 This subgraph extracts and structures event data from the following contracts:
@@ -19,19 +19,20 @@ This subgraph extracts and structures event data from the following contracts:
 ### Actor:
 Stores data about supply chain actors such as farmers, processors, distributors, and retailers.
 ```gql
-type Actor @entity {
+type Actor @entity(immutable: false) {
   id: ID!
   actorType: String!
   address: Bytes!
   hash: String!
   issuedAt: BigInt!
+  batches: [Batch!]!
 }
 ```
 
 ### Batch:
 Represents a batch of goods in the supply chain, tracking its state and associated actors.
 ```gql
-type Batch @entity {
+type Batch @entity(immutable: false) {
   id: ID!
   state: String!
   hash: String!
@@ -47,9 +48,10 @@ type Batch @entity {
 ### SupplyChain
 Stores aggregated statistics about the entire supply chain.
 ```gql
-type SupplyChain @entity {
+type SupplyChain @entity(immutable: false) {
   id: ID! @default(value: "supply-chain")
   batches: [Batch!]!
+  actors: [Actor!]!
   totalBatches: BigInt!
   totalActors: BigInt!
   activeBatches: BigInt!

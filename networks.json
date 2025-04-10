@@ -1,10 +1,10 @@
 {
   "sepolia": {
     "SupplyChain": {
-      "address": "0xa6fd28Af58F302E02EEfF3a84CAF4e464cB61413"
+      "address": "0x84Eed89cddaE5232a3790c63Bcb6391493896526"
     },
     "ActorsManager": {
-      "address": "0x6fa7a8Ef36958722fC77c88610AD236eB82f6016"
+      "address": "0xefC6f880C33Ee657C4a3c3c9738c40de2fBe62C7"
     }
   }
 }
